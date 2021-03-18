@@ -32,14 +32,6 @@ class InputValidationTest(unittest.TestCase):
         self.assertIn(b'unsanitized', response.data)
 
         input_3 = {
-            "payload": """For example: right now I am typing a "SQL Injection" into a textarea on a website. And I can type something like ' -- DROP TABLE users; right here!"""
-        }
-        response = self.app.post(BASE_URL, data=json.dumps(input_3),
-                                 content_type='application/json')
-        self.assertEqual(response.status_code, 400)
-        self.assertIn(b'unsanitized', response.data)
-
-        input_3 = {
             "payload": "You can use this WordPress dummy data generator to easily generate blog posts, pages, import images, and more. Following are a few scenarios where you may find this dummy data very useful You can use this WordPress dummy data generator to easily generate blog posts, pages, import images, and more. Following are a few scenarios where you may find this dummy data very useful;1234 ' AND 1=0 UNION ALL SELECT 'admin', '81dc9bdb52d04dc20036dbd8313ed055; Adding dummy content allows you to fill up an empty WordPress site with placeholder content. This allows you to see how a website will look and how your plugins would work with content. Adding dummy content allows you to fill up an empty;UNION ALL SELECT NULL#; WordPress site with placeholder content. This allows you to see how a website will look and how your plugins would work with content"
         }
         response = self.app.post(BASE_URL, data=json.dumps(input_3),
